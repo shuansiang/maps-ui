@@ -1,11 +1,14 @@
 @media (min-width: 400px) {
-  .img-mark, #pickup, #dropoff {
-    margin-bottom: 10px;
-  }
+  .img-mark, #pickup, #dropoff { margin-bottom: 10px; }
 }
 
 @media (min-width: 768px) {
-  #pickup, #dropoff { width: 200px; }
+  #pickup, #dropoff {
+    width: 200px;
+  }
+  .img-mark, #pickup, #dropoff {
+    margin-bottom: 0px;
+  }
 }
 
 @media (min-width: 875px) {
