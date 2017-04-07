@@ -52,6 +52,7 @@ $(document).ready(function(){
 });
 
 var pickupLat, pickupLng, dropoffLat, dropoffLng;
+var pickupAddr, dropoffAddr;
 var markerBounds, markers = [];
 var map;
 
@@ -84,11 +85,13 @@ function getLocations(form) {
       if (status == google.maps.GeocoderStatus.OK) {
         pickupLat = results[0].geometry.location.lat();
         pickupLng = results[0].geometry.location.lng();
+        pickupAddr = results[0].formatted_address
 
         geocoder.geocode({ "address": $("#dropoff").val() }, function(results, status) {
 		      if (status == google.maps.GeocoderStatus.OK) {
 		        dropoffLat = results[0].geometry.location.lat();
 		        dropoffLng = results[0].geometry.location.lng();
+		        dropoffAddr = results[0].formatted_address
 				 		placeMarkers();
 		      }
 		    });
@@ -99,11 +102,13 @@ function getLocations(form) {
       if (status == google.maps.GeocoderStatus.OK) {
         pickupLat = results[0].geometry.location.lat();
         pickupLng = results[0].geometry.location.lng();
+        pickupAddr = results[0].formatted_address
 
         geocoder.geocode({ "address": $("#modal-dropoff").val() }, function(results, status) {
 		      if (status == google.maps.GeocoderStatus.OK) {
 		        dropoffLat = results[0].geometry.location.lat();
 		        dropoffLng = results[0].geometry.location.lng();
+		        dropoffAddr = results[0].formatted_address
 				 		placeMarkers();
 		      }
 		    });
@@ -114,23 +119,29 @@ function getLocations(form) {
 
 function placeMarkers() {
 	markerBounds = new google.maps.LatLngBounds();
-	createMarker(pickupLat, pickupLng, "pickup");
-	createMarker(dropoffLat, dropoffLng, "dropoff");
+	createMarker(pickupLat, pickupLng, pickupAddr, "pickup");
+	createMarker(dropoffLat, dropoffLng, dropoffAddr, "dropoff");
   map.fitBounds(markerBounds);
 }
 
-function createMarker(lat, lng, type) {
+function createMarker(lat, lng, addr, type) {
 	var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/';
   var icons = {
     pickup: iconBase + 'A.png',
     dropoff: iconBase + 'B.png'
   };
+
   var position = new google.maps.LatLng(lat, lng);
 	var marker = new google.maps.Marker({
     position: position,
     animation: google.maps.Animation.DROP,
     icon: icons[type],
     map: map
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    new google.maps.InfoWindow({
+      content: addr
+    }).open(map, marker);
   });
   markerBounds.extend(position);
   markers.push(marker);
