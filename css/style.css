@@ -1,4 +1,4 @@
-body, .pac-container, .gm-style-iw > div > div {
+body {
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -83,10 +83,6 @@ body, .pac-container, .gm-style-iw > div > div {
 
 .glyphicon-map-marker {
 	margin-left: 5px;
-}
-
-.pac-container {
-	z-index: 1051 !important;
 }
 
 .error {

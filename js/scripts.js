@@ -6,6 +6,15 @@ $(document).ready(function(){
     keyboard: false
   });
 
+  $("#modal-pickup, #modal-dropoff, #pickup, #dropoff").on('input', function(e) {
+  	$("datalist#location").empty();
+		service.getPlacePredictions({ input: $(e.currentTarget).val(), componentRestrictions: {country: 'sg'} }, function(predictions, status) {
+		  predictions.forEach(function(prediction) {
+		  	$("datalist#location").append("<option value='" + prediction.description + "'>");
+			});
+		});
+  });
+
   $("#modal-form").submit(function(e) {
   	e.preventDefault();
 
@@ -55,20 +64,16 @@ var pickupLat, pickupLng, dropoffLat, dropoffLng;
 var pickupAddr, dropoffAddr;
 var markerBounds, markers = [];
 var map;
-
+var service;
 
 function initialiseMap() {
+	service = new google.maps.places.AutocompleteService();
   var singapore = { lat: 1.354763, lng: 103.8203483 };
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: singapore,
     zoom: 12
   });
-
-  var navAutocompletePickup = new google.maps.places.Autocomplete(document.getElementById('pickup'), {types: ['geocode'], componentRestrictions: {country: "sg"}});
-  var navAutocompleteDropoff = new google.maps.places.Autocomplete(document.getElementById('dropoff'), {types: ['geocode'], componentRestrictions: {country: "sg"}});
-  var modalAutocompletePickup = new google.maps.places.Autocomplete(document.getElementById('modal-pickup'), {types: ['geocode'], componentRestrictions: {country: "sg"}});
-  var modalAutocompleteDropoff = new google.maps.places.Autocomplete(document.getElementById('modal-dropoff'), {types: ['geocode'], componentRestrictions: {country: "sg"}});
 }
 
 function clearAllMarkers() {
