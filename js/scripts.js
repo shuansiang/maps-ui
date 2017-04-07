@@ -140,7 +140,7 @@ function createMarker(lat, lng, addr, type) {
   });
   google.maps.event.addListener(marker, 'click', function() {
     new google.maps.InfoWindow({
-      content: addr
+      content: type.charAt(0).toUpperCase() + type.slice(1) + ' Location: ' + addr
     }).open(map, marker);
   });
   markerBounds.extend(position);
