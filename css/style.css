@@ -1,3 +1,22 @@
+@media (min-width: 400px) {
+  .img-mark, #pickup, #dropoff {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  #pickup, #dropoff { width: 200px; }
+}
+
+@media (min-width: 875px) {
+  #pickup, #dropoff { width: 300px; }
+}
+
+
+@media (min-width: 1075px) {
+  #pickup, #dropoff { width: 400px; }
+}
+
 body, .ui-menu-item-wrapper {
 	font-family: 'Raleway', sans-serif;
 }
@@ -32,7 +51,6 @@ body, .ui-menu-item-wrapper {
 }
 
 #pickup, #dropoff {
-	width: 400px;
 	height: 40px;
 	font-size: 20px;
 	margin-right: 10px;
