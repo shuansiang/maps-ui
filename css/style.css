@@ -1,0 +1,94 @@
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+#nav-form {
+	text-align: center;
+}
+
+#nav-form button {
+	background-color: rgb(101, 200, 122);
+  color: white;
+  border: 0px;
+  height: 40px;
+  width: 100px;
+}
+
+#pickup, #dropoff {
+	width: 400px;
+	height: 40px;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+#googleMap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-top: 57px;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1031;
+}
+
+#welcome-modal .modal-content {
+  border-radius: 0px;
+  background-color: rgb(39, 43, 45);
+  padding: 10px 20px;
+  margin-top: 200px;
+}
+
+#welcome-modal h1 {
+	text-align: center;
+	color: white;
+}
+
+#welcome-modal p {
+	text-align: center;
+	color: white;
+	margin-bottom: 30px;
+}
+
+#welcome-modal input {
+	margin-bottom: 30px;
+  border: 0px;
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(142, 142, 139);
+  padding: 0;
+  font-size: 18px;
+  color: white;
+	box-shadow:none;
+}
+
+#welcome-modal .modal-mark {
+	text-align: center;
+}
+
+#welcome-modal button {
+	background-color: rgb(101, 200, 122);
+  color: white;
+  border-radius: 0px;
+  padding: 7px 90px;
+}
+
+.glyphicon-map-marker {
+	margin-left: 5px;
+}
+
+.pac-container {
+	z-index: 1051 !important;
+}
+
+.error {
+  border-color: #ab3131 !important;
+}
