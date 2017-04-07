@@ -7,14 +7,18 @@ $(document).ready(function(){
   });
 
   $("#modal-pickup, #modal-dropoff, #pickup, #dropoff").on('input', function(e) {
-  	$("datalist#location").empty();
   	var input = $(e.currentTarget).val();
   	if (!input) {
   		return;
   	}
 		service.getPlacePredictions({ input: input, componentRestrictions: {country: 'SG'} }, function(predictions, status) {
-		  predictions.forEach(function(prediction) {
-		  	$("datalist#location").append("<option value='" + prediction.description + "'>");
+			var list = []
+			for (i in predictions) {
+				list.push(predictions[i].description)
+			}
+
+			$(e.currentTarget).autocomplete({
+			  source: list
 			});
 		});
   });
@@ -36,8 +40,8 @@ $(document).ready(function(){
     
   	$(".overlay").fadeOut(1000);
   	$("#welcome-modal").modal('toggle');
-  	$("#pickup").val($("#modal-pickup").val())
-  	$("#dropoff").val($("#modal-dropoff").val())
+  	$("#pickup").focus().val($("#modal-pickup").val())
+  	$("#dropoff").focus().val($("#modal-dropoff").val()).blur()
 
 	  setTimeout(function() {
 	 		getLocations("modal");

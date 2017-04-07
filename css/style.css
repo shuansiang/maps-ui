@@ -17,7 +17,9 @@ body {
 .img-mark {
   width: 40px;
 }
-
+.ui-autocomplete {
+    z-index: 1100;
+}
 #pickup, #dropoff {
 	width: 400px;
 	height: 40px;
