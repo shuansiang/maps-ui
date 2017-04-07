@@ -8,7 +8,11 @@ $(document).ready(function(){
 
   $("#modal-pickup, #modal-dropoff, #pickup, #dropoff").on('input', function(e) {
   	$("datalist#location").empty();
-		service.getPlacePredictions({ input: $(e.currentTarget).val(), componentRestrictions: {country: 'sg'} }, function(predictions, status) {
+  	var input = $(e.currentTarget).val();
+  	if (!input) {
+  		return;
+  	}
+		service.getPlacePredictions({ input: input, componentRestrictions: {country: 'SG'} }, function(predictions, status) {
 		  predictions.forEach(function(prediction) {
 		  	$("datalist#location").append("<option value='" + prediction.description + "'>");
 			});
@@ -86,13 +90,13 @@ function getLocations(form) {
 	var geocoder = new google.maps.Geocoder();
 
 	if (form === "nav") {
-	  geocoder.geocode({ "address": $("#pickup").val() }, function(results, status) {
+	  geocoder.geocode({ "address": $("#pickup").val(), componentRestrictions: { country: 'SG' } }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         pickupLat = results[0].geometry.location.lat();
         pickupLng = results[0].geometry.location.lng();
         pickupAddr = results[0].formatted_address
 
-        geocoder.geocode({ "address": $("#dropoff").val() }, function(results, status) {
+        geocoder.geocode({ "address": $("#dropoff").val(), componentRestrictions: { country: 'SG' } }, function(results, status) {
 		      if (status == google.maps.GeocoderStatus.OK) {
 		        dropoffLat = results[0].geometry.location.lat();
 		        dropoffLng = results[0].geometry.location.lng();
@@ -103,13 +107,13 @@ function getLocations(form) {
       }
     });
 	} else if (form === "modal") {	
-  	geocoder.geocode({ "address": $("#modal-pickup").val() }, function(results, status) {
+  	geocoder.geocode({ "address": $("#modal-pickup").val(), componentRestrictions: { country: 'SG' } }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         pickupLat = results[0].geometry.location.lat();
         pickupLng = results[0].geometry.location.lng();
         pickupAddr = results[0].formatted_address
 
-        geocoder.geocode({ "address": $("#modal-dropoff").val() }, function(results, status) {
+        geocoder.geocode({ "address": $("#modal-dropoff").val(), componentRestrictions: { country: 'SG' } }, function(results, status) {
 		      if (status == google.maps.GeocoderStatus.OK) {
 		        dropoffLat = results[0].geometry.location.lat();
 		        dropoffLng = results[0].geometry.location.lng();

@@ -14,6 +14,10 @@ body {
   width: 100px;
 }
 
+.img-mark {
+  width: 40px;
+}
+
 #pickup, #dropoff {
 	width: 400px;
 	height: 40px;
